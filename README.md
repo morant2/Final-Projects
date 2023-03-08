@@ -1,5 +1,4 @@
-# Active-Work
-Ongoing Classwork/Projects
+# Final Projects
 
 Tyler Moran
 CPS 493-03
