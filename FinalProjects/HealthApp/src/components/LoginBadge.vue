@@ -10,13 +10,13 @@ const session = useSession();
                 (<a @click=" session.user = null">logout</a>)
             </div>
             <div class="navbar-item" v-else>
-                <a class="button is-primary" @click="login">
+                <a class="button is-danger" @click="login">
                     <span class="icon">
                         <i class="fas fa-user"></i>
                     </span>
                     <strong>Login</strong>
                 </a>
-                <a class="button is-info">
+                <a class="button is-primary">
                     <span class="icon">
                         <i class="fas fa-user-plus"></i>
                     </span>

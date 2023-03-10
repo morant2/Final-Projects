@@ -5,7 +5,11 @@
 <template>
   <main>
     <h1 class="title">
-      This is our home page. 
+      Welcome to my incredibly generic health app.
     </h1>
   </main>
 </template>
+
+<style scoped>
+
+</style>
