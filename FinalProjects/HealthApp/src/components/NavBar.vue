@@ -14,9 +14,9 @@ import LoginBadge from './LoginBadge.vue';
         <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item">
-            
-            <i class="fas fa-house-medical" width="22" height="22"></i>
-            
+
+            <RouterLink to="/" class="navbar-item"><icon class="fas fa-house-medical"></icon></RouterLink>
+              
           </a>
           <div class="navbar-burger" :class="{ 'is-active': isMenuActive }" @click="toggleMenu" >
             <span></span>
@@ -28,7 +28,7 @@ import LoginBadge from './LoginBadge.vue';
         <div class="navbar-menu" :class="{ 'is-active': isMenuActive }">
           <div class="navbar-start">
 
-            <RouterLink to="/" class="navbar-item">Home</RouterLink>
+            
             <RouterLink to="/about" class="navbar-item">About</RouterLink>
             <RouterLink to="/products" class="navbar-item">Products</RouterLink>
             <RouterLink to="/feed" class="navbar-item">Feed</RouterLink>
@@ -99,6 +99,8 @@ import LoginBadge from './LoginBadge.vue';
 
 
 <style scoped>
-
+.fa-house-medical {
+    color:aliceblue
+}
 
 </style>

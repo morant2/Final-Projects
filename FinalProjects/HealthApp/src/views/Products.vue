@@ -8,7 +8,7 @@ const products = ref( getProducts());
 <template>
     <div>
         <h1 class="title">
-            TWhat would you like to buy?
+            What would you like to buy?
         </h1>
 
 
