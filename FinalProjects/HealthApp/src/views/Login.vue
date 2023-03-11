@@ -17,9 +17,11 @@
 <style scoped>
 
 #loginMessage {
-
-    position: sticky;
-    top: 100px;
+    position: fixed;
+    top: 25%;
+    right: 25%;
+    left: 25%;
+    
     border: 4px solid red;
     border-radius: 5px; 
     padding: 10px;

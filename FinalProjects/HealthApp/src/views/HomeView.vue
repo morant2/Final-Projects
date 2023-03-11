@@ -3,18 +3,18 @@ import LoginBadge from '../components/LoginBadge.vue';
 </script>
 
 <template>
-  <div id="header">
+  <div class="container" id="header">
     <h1 class="title">
       Welcome to my incredibly generic health app.
     </h1>
   </div>
 
-  <div id="aboutlink">
+  <div class="container" id="aboutlink">
     <p>Click here to find out more about us!</p>
-    <RouterLink to="/about">About</RouterLink>
+    <RouterLink to="/about"><i class="button" >About</i></RouterLink>
   </div>
 
-  <div id="signup">
+  <div class="container" id="signup">
    <p>Login to access your data, or sign up to start tracking!</p>
     <LoginBadge />
   
@@ -22,6 +22,15 @@ import LoginBadge from '../components/LoginBadge.vue';
 </template>
 
 <style scoped>
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 1rem;
+}
 
 #header {
   background-color: #f5f5f5;
@@ -31,15 +40,14 @@ import LoginBadge from '../components/LoginBadge.vue';
 }
 
 #aboutlink {
-  margin-top: 1rem;
-  text-align: center;
+  
   border-bottom: 1px solid #ccc;
 }
 
 #signup {
-  margin-top: 1rem;
-  text-align: center;
-  justify-content: center;
-  border-bottom: 1px solid #ccc;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #ccc;
 }
 </style>
