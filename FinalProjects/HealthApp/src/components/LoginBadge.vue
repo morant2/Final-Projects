@@ -27,7 +27,7 @@ function logout2() {
                     <span class="icon">
                         <i class="fas fa-user-plus"></i>
                     </span>
-                    <strong>Sign up</strong>
+                    <RouterLink to="/signup">Sign up</RouterLink>
                 </a>
             </div>
 

@@ -30,7 +30,7 @@ import LoginBadge from './LoginBadge.vue';
 
             
             <RouterLink to="/about" class="navbar-item">About</RouterLink>
-            <RouterLink to="/products" class="navbar-item">Products</RouterLink>
+            <RouterLink to="/myhome" class="navbar-item">My Home</RouterLink>
             <RouterLink to="/feed" class="navbar-item">Feed</RouterLink>
 
 
