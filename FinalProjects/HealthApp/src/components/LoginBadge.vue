@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useSession, login, useLogout } from '@/Model/session';
+import { RouterLink } from 'vue-router';
 
 const session = useSession();
 const logout = useLogout();
@@ -27,7 +28,7 @@ function logout2() {
                     <span class="icon">
                         <i class="fas fa-user-plus"></i>
                     </span>
-                    <RouterLink to="/signup">Sign up</RouterLink>
+                <RouterLink to="/signup"><strong>Sign up</strong></RouterLink>
                 </a>
             </div>
 
@@ -36,5 +37,19 @@ function logout2() {
 </template>
 
 <style scoped>
+#signup 
+{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #ccc;
+  text-align: center;
+  align-items: center;
+  color:white;
+}
 
+strong
+{
+    color:white;
+}
 </style>
