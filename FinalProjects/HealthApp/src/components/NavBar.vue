@@ -49,7 +49,7 @@ import LoginBadge from './LoginBadge.vue';
       
           <div class="navbar-end">
 
-            <LoginBadge />
+            
 
             <div class="navbar-item">
               <div class="field is-grouped">
