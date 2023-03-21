@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SignupBar from '../components/SignupBar.vue';
+
 import Welcome from '../components/Welcome.vue';
 import Review from '../components/Review.vue';
 </script>
@@ -13,10 +13,10 @@ import Review from '../components/Review.vue';
     <RouterLink to="/about"><i class="button" >About</i></RouterLink>
   </div>
  
-    <Review />
+  <Review />
  
 
-  <SignupBar />
+  
 
 </template>
 

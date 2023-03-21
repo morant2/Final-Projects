@@ -1,13 +1,13 @@
 <script setup lang="ts">
 
 import Welcome from '../components/Welcome.vue';
-import SignupBar from '../components/SignupBar.vue';
+
 </script>
 
 <template>
 
   <Welcome />
-  <SignupBar />
+  
 
 </template>
 

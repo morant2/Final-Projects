@@ -11,8 +11,9 @@ const newUser = ref({
 </script>
 
 <template>
-
-  <form action="" class="box">
+<div class="modal" id="SignUpForm">
+    <span onclick="'SignUpForm'.style.display='none'" class="close" title="Close Modal">&times;</span>
+    <form action="" class="modal-content">
     <div class="field">
         <label class="label">Name</label>
         <div class="control has-icons-left">
@@ -55,20 +56,39 @@ const newUser = ref({
         </div>
       </div>
       
-      <div class="field is-grouped">
+      <div class="clearfix is-grouped">
         <div class="control">
-          <button class="button is-link">Submit</button>
+          <button type="submit" >Submit</button>
         </div>
         <div class="control">
           <RouterLink to="/" class="button is-link is-light" >Cancel</RouterLink>
         </div>
       </div>
 </form>>
-    
+</div>
 
 </template>
 
 <style scoped>
+
+*
+{
+ box-sizing: border-box;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
 
 
 </style>

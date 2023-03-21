@@ -5,7 +5,7 @@ import LoginVue from '@/views/Login.vue'
 import { useSession } from '@/Model/session'
 import FeedVue from '@/views/Feed.vue'
 import AboutView from '../views/AboutView.vue'
-import SignUpView from '../views/SignUpView.vue'
+import SignUpView from '../components/SignUpView.vue'
 import MyHomeView from '../views/MyHomeView.vue'
 
 const router = createRouter({

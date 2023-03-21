@@ -24,18 +24,15 @@
             <p>So what have you done today?</p>
             <hr>
             <label for="type"><b>Type of activity :</b></label><br>
-                <input type="radio" id="meal" name="type" value="meal">
-                <label for="meal">Meal</label><br>
-                <input type="radio" id="snack" name="type" value="snack">
-                <label for="snack">Snack</label><br>
-                <input type="radio" id="drink" name="type" value="drink">
-                <label for="drink">Drink</label><br>
+                <select id="type" name="type">
+                    <option value="cardio">Cardio</option>
+                    <option value="strength">Strength</option>
+                    <option value="flexibility">Flexibility</option>
+                </select><br>
 
             <label for="desc"><b>Description</b></label>
             <input type="text" placeholder="Enter Description" name="desc"><br>
 
-            <label for="cal"><b>Calories</b></label>
-            <input type="number" placeholder="Enter Calories" name="cal"><br>
             
 
             
