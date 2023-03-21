@@ -74,7 +74,7 @@
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: #474e5d;
+  background-color:rgb(0,0,0,0.4);
   padding-top: 50px;
 }
 
