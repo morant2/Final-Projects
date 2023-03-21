@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useSession, login, useLogout } from '@/Model/session';
+import { useSession, login2, useLogout } from '@/Model/session';
 import { RouterLink } from 'vue-router';
+import { usersList } from '@/data/usersList.json';
 
 const session = useSession();
 const logout = useLogout();
@@ -18,18 +19,29 @@ function logout2() {
                 (<a @click="logout2()">logout</a>)
             </div>
             <div class="navbar-item" v-else>
-                <a class="button is-primary" @click="login">
+                <a class="button is-primary is-dropdown" id="dropbtn">
                     <span class="icon">
                         <i class="fas fa-user"></i>
                     </span>
                     <strong>Login</strong>
+                    <span class="icon is-small">
+                        <i class="fas fa-angle-down"></i>
+                    </span>
+                    <div class="dropdown-content" id="users">
+                        <a v-for="user in usersList" class="dropdown-item" @click="login2(user.name)">
+                            {{ user.name }}
+                        </a>
+                    </div>
+                    
                 </a>
-                <a class="button is-primary">
+                <RouterLink to="/signup">
+                    <a class="button is-primary">
                     <span class="icon">
                         <i class="fas fa-user-plus"></i>
                     </span>
-                <RouterLink to="/signup"><strong>Sign up</strong></RouterLink>
-                </a>
+                <strong>Sign up</strong>
+            </a>
+            </RouterLink>
             </div>
 
 
@@ -37,19 +49,25 @@ function logout2() {
 </template>
 
 <style scoped>
-#signup 
+
+.button {
+    color: white;
+}
+.dropdown-content
 {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  border-top: 1px solid #ccc;
-  text-align: center;
-  align-items: center;
-  color:white;
+    display:none;
 }
 
-strong
+#dropbtn
 {
-    color:white;
+    display:inline-block;
+    position:static;
+}
+#dropbtn:hover .dropdown-content
+{
+    display:flex;
+    flex-direction: column;
+    position: relative;
+
 }
 </style>

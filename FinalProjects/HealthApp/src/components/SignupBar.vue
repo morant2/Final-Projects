@@ -28,6 +28,7 @@ const logout = useLogout();
   text-align: center;
   align-items: center;
   color:white;
+  text-decoration: none;
 }
 
 

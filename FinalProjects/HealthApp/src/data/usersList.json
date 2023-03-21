@@ -1,0 +1,25 @@
+{
+    "usersList": [
+        {
+            "id": 1,
+            "name": "Jane Doe",
+            "email": "jd@gmail.com",
+            "photo": "",
+            "token": ""
+        },
+        {
+            "id": 2,
+            "name": "John Doe",
+            "email": "jd@hotmail.com",
+            "photo": "",
+            "token": ""
+        },
+        {
+            "id": 3,
+            "name": "John Smith",
+            "email": "js@aol.com",
+            "photo":"",
+            "token": ""
+        }
+    ]
+}

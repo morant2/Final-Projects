@@ -1,16 +1,21 @@
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
+import { usersList } from "../data/usersList.json";
+
+
 
 const session = reactive({
     user: null as User | null,
 })
 
-interface User {
+export interface User {
+   
     id?: number;
     name: string;
-    email?: string;
-    photo?: string;
-    token?: string;
+    email: string;
+    photo: string;
+    token: string;
+
 }
 
 export function useSession() {
@@ -19,7 +24,18 @@ export function useSession() {
 
 export function login() {
     session.user = {
+        id:2,
         name: "John Doe",
+        email: "jd@gmail.com",
+        photo: "https://picsum.photos/200/300",
+        token: "1234567890"
+    }
+}
+
+export function login2(name:string){
+    const user = usersList.find(user => user.name === name)
+    if(user){
+        session.user = user
     }
 }
 
@@ -33,3 +49,5 @@ export function useLogout() {
         router.push("/login");
     }
 }
+
+
