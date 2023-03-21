@@ -33,6 +33,14 @@
             <label for="desc"><b>Description</b></label>
             <input type="text" placeholder="Enter Description" name="desc"><br>
 
+            <label for="date"><b>Date</b></label>
+            <input type="date" placeholder="Enter Date" name="date"><br>
+
+            <label for="time"><b>Start time</b></label>
+            <input type="time" placeholder="Enter Start Time" name="starttime">
+            <label for="time"><b>End time</b></label>
+            <input type="time" placeholder="Enter End Time" name="endtime"><br>
+
             
 
             
@@ -66,23 +74,23 @@
 }
 
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1; 
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
+  width: 100%; 
+  height: 100%; 
+  overflow: auto;
   background-color:rgb(0,0,0,0.4);
   padding-top: 50px;
 }
 
 .modal-content {
   background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  margin: 5% auto 15% auto; 
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 80%; 
 }
 
 .container
