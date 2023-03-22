@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useSession, login2, useLogout } from '@/Model/session';
-import { usersList } from '@/data/usersList.json';
+import { users } from '@/data/usersList.json';
 
 
 const session = useSession();
@@ -27,7 +27,7 @@ function logout2() {
                         <i class="fas fa-angle-down"></i>
                     </span>
                     <div class="dropdown-content" id="users">
-                        <a v-for="user in usersList" class="dropdown-item" @click="login2(user.name)">
+                        <a v-for="user in users" class="dropdown-item" @click="login2(user.name)">
                             {{ user.name }}
                         </a>
                     </div>

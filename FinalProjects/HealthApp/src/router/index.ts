@@ -5,6 +5,7 @@ import { useSession } from '@/Model/session'
 import FeedVue from '@/views/Feed.vue'
 import AboutView from '../views/AboutView.vue'
 import MyHomeView from '../views/MyHomeView.vue'
+import UsersView from '../views/UsersView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,7 +14,8 @@ const router = createRouter({
     {path:'/feed', name:'feed', component: FeedVue, beforeEnter: secureRoute},
     {path: '/login', name: 'login', component: LoginVue},
     {path: '/about',name: 'about', component: AboutView},
-    {path: '/myhome',name: 'myhome', component: MyHomeView, beforeEnter: secureRoute}
+    {path: '/myhome',name: 'myhome', component: MyHomeView, beforeEnter: secureRoute},
+    {path: '/users', name: 'users', component: UsersView, beforeEnter: secureRoute}
   ]
 })
 

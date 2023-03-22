@@ -1,6 +1,6 @@
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-import { usersList } from "../data/usersList.json";
+import { users } from "../data/usersList.json";
 
 
 
@@ -33,7 +33,7 @@ export function login() {
 }
 
 export function login2(name:string){
-    const user = usersList.find(user => user.name === name)
+    const user = users.find(user => user.name === name)
     if(user){
         session.user = user
     }

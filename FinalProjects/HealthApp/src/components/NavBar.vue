@@ -40,7 +40,7 @@ import LoginBadge from './LoginBadge.vue';
               </a>
               <div class="navbar-dropdown">
                 <a class="navbar-item">
-                  Users
+                 <RouterLink to="/users" @click="toggleMenu"> Users</RouterLink>
                 </a>
 
               </div>
