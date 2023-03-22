@@ -29,9 +29,9 @@ import LoginBadge from './LoginBadge.vue';
           <div class="navbar-start">
 
             
-            <RouterLink to="/about" class="navbar-item">About</RouterLink>
-            <RouterLink to="/myhome" class="navbar-item">My Home</RouterLink>
-            <RouterLink to="/feed" class="navbar-item">Feed</RouterLink>
+            <RouterLink to="/about" class="navbar-item" @click="toggleMenu">About</RouterLink>
+            <RouterLink to="/myhome" class="navbar-item" @click="toggleMenu">My Home</RouterLink>
+            <RouterLink to="/feed" class="navbar-item" @click="toggleMenu">Feed</RouterLink>
 
 
             <div class="navbar-item has-dropdown is-hoverable">
