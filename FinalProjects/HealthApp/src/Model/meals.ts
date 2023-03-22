@@ -17,7 +17,7 @@ export function getMeals(): Meal[] {
 }
 
 export function getMealsbyUser(): Meal[] {
-    return data.meals.filter((meal) => meal.user === session.user.name);
+    return data.meals.filter((meal) => meal.user === session.user?.name);
 }
 
 export const totalCalories = computed(() => {

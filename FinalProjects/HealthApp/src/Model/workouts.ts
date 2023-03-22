@@ -21,8 +21,8 @@ export function getWorkouts(): Workout[] {
 //grab start and end times from workouts.json and subtract them to get active time for a given workout
 
 export function getWorkoutsbyUser(): Workout[] {
-    return data.workouts.filter((workout) => workout.user === session.user.name);
-}
+    return data.workouts.filter((workout) => workout.user === session.user?.name);
+} 
 
 export const activeTime = computed(() => {
     return getWorkoutsbyUser().reduce((total, workout) => total + workout.activeTime, 0);
