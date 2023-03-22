@@ -2,7 +2,7 @@
 
 
 
- var modal = document.getElementById('WorkoutForm');
+// var modal = document.getElementById('WorkoutForm');
  /*
  window.onclick = function(event)  {
   if (event.target == modal) {

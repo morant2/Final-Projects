@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import NewMeal from "@/components/NewMeal.vue";
 import NewWorkout from "@/components/NewWorkout.vue";
-import Tracker from "@/components/Tracker.vue";
+import Posts from "@/components/Posts.vue";
+import { activeTime } from "@/Model/workouts";
+import { totalCalories } from "@/Model/meals";
+
 </script>
 
 <template>
@@ -12,16 +15,38 @@ import Tracker from "@/components/Tracker.vue";
             <h1 class="title">Intake</h1>
             <p class="subtitle">This is the food part</p>
             <NewMeal />
+            <article class="media box">
+                <div class="media-content">
+                    <div class="content">
+                        <p>
+                            <strong>Calories consumed:</strong>
+                            <br>
+                            {{ totalCalories }}
+                        </p>
+                    </div>
+                </div>
+            </article>
         </div>
         <div class="column is-half" id="mystuff">
             <h1 class="title">My Stuff</h1>
             <p class="subtitle">This is the stuff part</p>
-            <Tracker />
+            <Posts />
         </div>
         <div class="column is-one-quarter" id="activity">
             <h1 class="title">Activity</h1>
             <p class="subtitle">This is the moving part</p>
             <NewWorkout />
+            <article class="media box">
+                <div class="media-content">
+                    <div class="content">
+                        <p>
+                            <strong>Active time:</strong>
+                            <br>
+                            {{ activeTime }} minutes
+                        </p>
+                    </div>
+                </div>
+            </article>
         </div>
     </div>
   </template>
