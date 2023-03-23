@@ -155,4 +155,14 @@ h1 {
     font-size: larger;
 }
 
+#users{
+    
+    position: relative;
+    background-color: #f1f1f1;
+    min-width: 80px;
+    overflow: auto;
+    border-radius: 0 0 10px 10px;
+    z-index: 1;
+}
+
 </style>
