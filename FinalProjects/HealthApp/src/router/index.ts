@@ -15,7 +15,7 @@ const router = createRouter({
     {path: '/login', name: 'login', component: LoginVue},
     {path: '/about',name: 'about', component: AboutView},
     {path: '/myhome',name: 'myhome', component: MyHomeView, beforeEnter: secureRoute},
-    {path: '/users', name: 'users', component: UsersView, beforeEnter: secureRoute}
+    {path: '/users', name: 'users', component: UsersView, beforeEnter: secureAdminRoute}
   ]
 })
 
@@ -24,6 +24,15 @@ export default router
 function secureRoute (to : RouteLocationNormalized, from : RouteLocationNormalized, next : NavigationGuardNext) {
   const session = useSession()
   if (session.user) {
+    next()
+  } else {
+    next('/login' )
+  }
+}
+
+function secureAdminRoute (to : RouteLocationNormalized, from : RouteLocationNormalized, next : NavigationGuardNext) {
+  const session = useSession()
+  if (session.user?.name == 'John Doe') {
     next()
   } else {
     next('/login' )

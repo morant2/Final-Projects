@@ -1,47 +1,71 @@
 <script setup lang="ts">
+import { addMeal, type Meal, getMeals } from '@/Model/meals';
+import { useSession } from '@/Model/session';
+import { ref } from 'vue'
+
+const session = useSession();
 
 
+const meal = ref<Meal | null>(null);
 
- var modal = document.getElementById('MealForm');
- /*
- window.onclick = function(event)  {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}*/
+function newMeal(){
+    meal.value = {
+        id: getMeals().length + 1,
+        type: "",
+        description: "",
+        calories: 0,
+        date: "",
+        user: session.user!.name
+    }
+}
+
+function saveMeal(){
+    if(meal.value){
+        addMeal(meal.value);
+        meal.value = null;
+    }
+}
 
 </script>
 
 <template>
 
-<div class="button" onclick="document.getElementById('MealForm').style.display='block'" style="width:auto;">Add Meal</div>
+<div class="button" @click="newMeal()" style="width:auto;">Add Meal</div>
 
-<div class="modal" id="MealForm">
-    <span onclick="'MealForm'.style.display='none'" class="close" title="Close Modal">&times;</span>
-    <form class="modal-content" action="">
+<div class="modal" id="MealForm" :class="{active:meal}">
+    <span @click="meal = null" class="close" title="Close Modal">&times;</span>
+    <form class="modal-content" @submit.prevent="saveMeal()" >
         <div class="container">
             <h1>New Meal</h1>
-            <p>So what have you eaten today?</p>
+            <p>So what have you eaten and when?</p>
             <hr>
             <label for="type"><b>Type of consumption :</b></label><br>
-                <input type="radio" id="meal" name="type" value="meal">
-                <label for="meal">Meal</label><br>
-                <input type="radio" id="snack" name="type" value="snack">
+                <input type="radio" id="breakfast" name="type" value="breakfast" v-bind="meal?.type">
+                <label for="meal">Breakfast</label><br>
+                <input type="radio" id="lunch" name="type" value="lunch" v-bind="meal?.type">
+                <label for="lunch">Lunch</label><br>
+                <input type="radio" id="dinner" name="type" value="dinner" v-bind="meal?.type">
+                <label for="dinner">Dinner</label><br>
+                <input type="radio" id="snack" name="type" value="snack" v-bind="meal?.type">
                 <label for="snack">Snack</label><br>
-                <input type="radio" id="drink" name="type" value="drink">
+                <input type="radio" id="drink" name="type" value="drink" v-bind="meal?.type">
                 <label for="drink">Drink</label><br>
 
             <label for="desc"><b>Description</b></label>
-            <input type="text" placeholder="Enter Description" name="desc"><br>
+            <input type="text" placeholder="Enter Description" name="desc" v-bind="meal?.description"><br>
 
             <label for="cal"><b>Calories</b></label>
-            <input type="number" placeholder="Enter Calories" name="cal"><br>
-            
+            <input type="number" placeholder="Enter Calories" name="cal" v-bind="meal?.calories"><br>
+
+            <label for="date"><b>Date</b></label>
+            <input type="date" placeholder="Enter Date" name="date" v-bind="meal?.date">
+            <label for="time"><b>Time</b></label>
+            <input type="time" placeholder="Enter Time" name="time"><br>
 
             
 
             <div class="clearfix">
-                <button type="button" onclick="document.getElementById('MealForm').style.display='none'" class="cancelbtn">Cancel</button>
+                <button type="button" @click="meal=null" class="cancelbtn">Cancel</button>
                 <button type="submit" class="signupbtn">Submit</button>
             </div>
         </div>
@@ -79,6 +103,11 @@
   overflow: auto;
   background-color:rgb(0,0,0,0.4);
   padding-top: 50px;
+}
+
+.modal.active
+{
+    display: block;
 }
 
 .modal-content {

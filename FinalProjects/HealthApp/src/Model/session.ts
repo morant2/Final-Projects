@@ -50,4 +50,6 @@ export function useLogout() {
     }
 }
 
-
+export function getNames() {
+    return users.map(user => user.name)
+}

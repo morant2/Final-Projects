@@ -1,10 +1,13 @@
 import data from "../data/meals.json";
 import { useSession } from "./session";
-import { computed } from "vue";
+import { computed, reactive } from "vue";
 
 const session = useSession();
 
+const meals = reactive(data.meals);
+
 export interface Meal {
+    id: number;
     user: string;
     date: string;
     type: string;
@@ -13,13 +16,21 @@ export interface Meal {
 }
 
 export function getMeals(): Meal[] {
-    return data.meals;
+    return meals;
 }
 
 export function getMealsbyUser(): Meal[] {
-    return data.meals.filter((meal) => meal.user === session.user?.name);
+    return meals.filter((meal) => meal.user === session.user?.name);
 }
-
 export const totalCalories = computed(() => {
     return getMealsbyUser().reduce((total, meal) => total + meal.calories, 0);
 });
+
+export function addMeal(meal: Meal) {
+    meals.push(meal);
+}
+
+export function deleteMeal(meal: Meal) {
+    const index = meals.indexOf(meal);
+    meals.splice(index, 1);
+}
