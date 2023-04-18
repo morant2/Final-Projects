@@ -33,9 +33,12 @@ function saveMeal(){
 
 <div class="modal" id="MealForm" :class="{active:meal}">
     <span @click="meal = null" class="close" title="Close Modal">&times;</span>
-    <form class="modal-content" @submit.prevent="saveMeal()" >
-        <div class="container">
-            <h1>New Meal</h1>
+    <form class="modal-card" @submit.prevent="saveMeal()" >
+        <header class="modal-card-head">
+            <p class="modal-card-title">New Meal</p>
+            <button class="delete" aria-label="close" @click="meal = null"></button>
+        </header>
+        <section class="modal-card-body">
             <p>So what have you eaten and when?</p>
             <hr>
             <label for="type"><b>Type of consumption :</b></label><br>
@@ -61,13 +64,12 @@ function saveMeal(){
             <label for="time"><b>Time</b></label>
             <input type="time" placeholder="Enter Time" name="time"><br>
 
-            
+        </section>
 
-            <div class="clearfix">
-                <button type="button" @click="meal=null" class="cancelbtn">Cancel</button>
-                <button type="submit" class="signupbtn">Submit</button>
-            </div>
-        </div>
+            <footer class="modal-card-foot">
+                <button class="button" @click="meal=null">Cancel</button>
+                <button class="button" @click="saveMeal()">Submit</button>
+            </footer>
     </form>
 </div>
 </template>

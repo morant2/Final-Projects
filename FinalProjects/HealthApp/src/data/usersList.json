@@ -4,22 +4,19 @@
             "id": 1,
             "name": "Jane Doe",
             "email": "jd@gmail.com",
-            "photo": "",
-            "token": ""
+            "photo": ""
         },
         {
             "id": 2,
             "name": "John Doe",
             "email": "jd@hotmail.com",
-            "photo": "",
-            "token": ""
+            "photo": ""
         },
         {
             "id": 3,
             "name": "John Smith",
             "email": "js@aol.com",
-            "photo":"",
-            "token": ""
+            "photo":""
         }
     ]
 }

@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { useSession, login2, useLogout } from '@/Model/session';
 import { users } from '@/data/usersList.json';
-
+import SignUp from '@/components/SignUp.vue';
 
 const session = useSession();
 const logout = useLogout();
@@ -17,9 +17,10 @@ function logout2() {
                 Welcome, {{ session.user.name }}
                 (<a @click="logout2()">logout</a>)
             </div>
-            <div class="dropdown is-hoverable" v-else>
-              <div class="dropdown-trigger">
-                <button class="button is-primary" id="dropbtn" aria-haspopup="true" aria-controls="dropdown-menu">
+            <div class="navbar-item" v-else>
+              <div class="dropdown is-hoverable">
+                <div class="dropdown-trigger">
+                  <button class="button is-primary" id="dropbtn" aria-haspopup="true" aria-controls="dropdown-menu">
                     <span class="icon">
                         <i class="fas fa-user"></i>
                     </span>
@@ -27,17 +28,21 @@ function logout2() {
                     <span class="icon is-small">
                         <i class="fas fa-angle-down"></i>
                     </span>
-                </button>
+                  </button>
+                </div>
+                  <div class="dropdown-menu" id="users" role="menu">
+                    <a v-for="user in users" class="dropdown-item" @click="login2(user.name)">
+                      {{ user.name }}
+                    </a>
+                  </div>
               </div>
-                    <div class="dropdown-menu" id="users" role="menu">
-                        <a v-for="user in users" class="dropdown-item" @click="login2(user.name)">
-                            {{ user.name }}
-                        </a>
-                    </div>
-              </div>
+              <div class="navbar-item">
+                <SignUp></SignUp>
+            </div>
+            </div>
                 
                 
-<div class="button is-primary" onclick="document.getElementById('SignupForm').style.display='block'" style="width:auto;"><strong>Sign Up</strong></div>
+
 
 <div class="modal" id="SignupForm">
     <span onclick="'SignupForm'.style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -108,6 +113,7 @@ function logout2() {
 }
 .button {
     color: white;
+    margin: auto;
 }
 
 

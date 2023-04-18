@@ -31,9 +31,12 @@ function saveWorkout(){
 
 <div class="modal" id="WorkoutForm" :class="{active:workout}">
     <span @click="workout=null" class="close" title="Close Modal">&times;</span>
-    <form class="modal-content" @submit.prevent="saveWorkout()">
-        <div class="container">
-            <h1>New Workout</h1>
+    <form class="modal-card" @submit.prevent="saveWorkout()">
+        <header class="modal-card-head">
+            <p class="modal-card-title">New Workout</p>
+            <button class="delete" aria-label="close" @click="workout = null"></button>
+        </header>
+        <section class="modal-card-body">
             <p>So what have you done today?</p>
             <hr>
             <label for="type"><b>Type of activity :</b></label><br>
@@ -52,12 +55,12 @@ function saveWorkout(){
             <label for="time"><b>Active Time</b></label>
             <input type="number" placeholder="Enter Active Time" name="time" v-bind="workout?.activeTime"><br>
             
+        </section>
 
-            <div class="clearfix">
-                <button type="button" @click="workout=null" class="cancelbtn">Cancel</button>
-                <button type="submit" class="signupbtn">Submit</button>
-            </div>
-        </div>
+        <footer class="modal-card-foot">
+            <button class="button" @click="workout = null">Cancel</button>
+            <button class="button" @click="saveWorkout()">Save</button>
+        </footer>
     </form>
 </div>
 </template>
@@ -94,6 +97,10 @@ function saveWorkout(){
   padding-top: 50px;
 }
 
+.modal.active
+{
+    display: block;
+}
 .modal-content {
   background-color: #fefefe;
   margin: 5% auto 15% auto; 

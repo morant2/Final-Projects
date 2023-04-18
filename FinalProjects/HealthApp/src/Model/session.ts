@@ -10,26 +10,15 @@ const session = reactive({
 
 export interface User {
    
-    id?: number;
+    id: number;
     name: string;
     email: string;
     photo: string;
-    token: string;
 
 }
 
 export function useSession() {
     return session;
-}
-
-export function login() {
-    session.user = {
-        id:2,
-        name: "John Doe",
-        email: "jd@gmail.com",
-        photo: "https://picsum.photos/200/300",
-        token: "1234567890"
-    }
 }
 
 export function login2(name:string){
@@ -55,5 +44,5 @@ export function getNames() {
 }
 
 export function getUsers() {
-    return users;
+    return users;   
 }
