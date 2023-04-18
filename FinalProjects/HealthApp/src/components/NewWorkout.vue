@@ -1,52 +1,60 @@
 <script setup lang="ts">
+import { addWorkout, type Workout } from '@/Model/workouts';
+import { useSession } from '@/Model/session';
+import { ref } from 'vue'
 
+const session = useSession();
 
+const workout = ref<Workout | null>(null);
 
-// var modal = document.getElementById('WorkoutForm');
- /*
- window.onclick = function(event)  {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}*/
+function newWorkout(){
+    workout.value = {
+        type: "",
+        description: "",
+        date: "",
+        activeTime: 0,
+        user: session.user!.name
+    }
+}
 
+function saveWorkout(){
+    if(workout.value){
+        addWorkout(workout.value);
+        workout.value = null;
+    }
+}
 </script>
 
 <template>
 
-<div class="button" onclick="document.getElementById('WorkoutForm').style.display='block'" style="width:auto;">Add Exercise</div>
+<div class="button" @click="newWorkout()" style="width:auto;">Add Exercise</div>
 
-<div class="modal" id="WorkoutForm">
-    <span onclick="'WorkoutForm'.style.display='none'" class="close" title="Close Modal">&times;</span>
-    <form class="modal-content" action="">
+<div class="modal" id="WorkoutForm" :class="{active:workout}">
+    <span @click="workout=null" class="close" title="Close Modal">&times;</span>
+    <form class="modal-content" @submit.prevent="saveWorkout()">
         <div class="container">
             <h1>New Workout</h1>
             <p>So what have you done today?</p>
             <hr>
             <label for="type"><b>Type of activity :</b></label><br>
                 <select id="type" name="type">
-                    <option value="cardio">Cardio</option>
-                    <option value="strength">Strength</option>
-                    <option value="flexibility">Flexibility</option>
+                    <option value="cardio" v-bind="workout?.type">Cardio</option>
+                    <option value="strength" v-bind="workout?.type">Strength</option>
+                    <option value="flexibility" v-bind="workout?.type">Flexibility</option>
                 </select><br>
 
             <label for="desc"><b>Description</b></label>
-            <input type="text" placeholder="Enter Description" name="desc"><br>
+            <input type="text" placeholder="Enter Description" name="desc" v-bind="workout?.description"><br>
 
             <label for="date"><b>Date</b></label>
-            <input type="date" placeholder="Enter Date" name="date"><br>
+            <input type="date" placeholder="Enter Date" name="date" v-bind="workout?.date"><br>
 
-            <label for="time"><b>Start time</b></label>
-            <input type="time" placeholder="Enter Start Time" name="starttime">
-            <label for="time"><b>End time</b></label>
-            <input type="time" placeholder="Enter End Time" name="endtime"><br>
-
-            
-
+            <label for="time"><b>Active Time</b></label>
+            <input type="number" placeholder="Enter Active Time" name="time" v-bind="workout?.activeTime"><br>
             
 
             <div class="clearfix">
-                <button type="button" onclick="document.getElementById('WorkoutForm').style.display='none'" class="cancelbtn">Cancel</button>
+                <button type="button" @click="workout=null" class="cancelbtn">Cancel</button>
                 <button type="submit" class="signupbtn">Submit</button>
             </div>
         </div>

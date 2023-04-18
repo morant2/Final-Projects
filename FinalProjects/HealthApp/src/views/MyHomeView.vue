@@ -2,7 +2,7 @@
 import NewMeal from "@/components/NewMeal.vue";
 import NewWorkout from "@/components/NewWorkout.vue";
 import Posts from "@/components/Posts.vue";
-import { activeTime } from "@/Model/workouts";
+import { todaysActiveTime, totalActiveTime, weekActiveTime, monthActiveTime } from "@/Model/workouts";
 import { totalCalories, todaysCalories, weekCalories, monthCalories } from "@/Model/meals";
 
 </script>
@@ -51,7 +51,14 @@ import { totalCalories, todaysCalories, weekCalories, monthCalories } from "@/Mo
                         <p>
                             <strong>Active time:</strong>
                             <br>
-                            {{ activeTime }} minutes
+                            <h>Today's Active Time: {{ todaysActiveTime }} minutes</h>
+                            <br>
+                            <h>This Week's Active Time: {{ weekActiveTime }} minutes</h>
+                            <br>
+                            <h>This Month's Active Time: {{ monthActiveTime }} minutes</h>
+                            <br>
+                            <h>All Time Active Time: {{ totalActiveTime }} minutes</h>
+                            <br>
                         </p>
                     </div>
                 </div>
