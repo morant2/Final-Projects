@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { addMeal, type Meal, getMeals } from '@/Model/meals';
+import { addMeal, type Meal } from '@/Model/meals';
 import { useSession } from '@/Model/session';
 import { ref } from 'vue'
 
@@ -10,7 +10,6 @@ const meal = ref<Meal | null>(null);
 
 function newMeal(){
     meal.value = {
-        id: getMeals().length + 1,
         type: "",
         description: "",
         calories: 0,

@@ -26,13 +26,14 @@ function logout2() {
                     <span class="icon is-small">
                         <i class="fas fa-angle-down"></i>
                     </span>
+                
                     <div class="dropdown-content" id="users">
                         <a v-for="user in users" class="dropdown-item" @click="login2(user.name)">
                             {{ user.name }}
                         </a>
                     </div>
-                    
-                </a>
+                  </a>
+                
                 
 <div class="button is-primary" onclick="document.getElementById('SignupForm').style.display='block'" style="width:auto;"><strong>Sign Up</strong></div>
 
@@ -114,14 +115,12 @@ function logout2() {
 #dropbtn
 {
     display:inline-block;
-    position:static;
+    position:relative;
 }
 #dropbtn:hover .dropdown-content
 {
     display:flex;
     flex-direction: column;
-    position: relative;
-
 }
 
 .modal {

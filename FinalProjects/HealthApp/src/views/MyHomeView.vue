@@ -3,7 +3,7 @@ import NewMeal from "@/components/NewMeal.vue";
 import NewWorkout from "@/components/NewWorkout.vue";
 import Posts from "@/components/Posts.vue";
 import { activeTime } from "@/Model/workouts";
-import { totalCalories } from "@/Model/meals";
+import { totalCalories, todaysCalories, weekCalories, monthCalories } from "@/Model/meals";
 
 </script>
 
@@ -21,7 +21,16 @@ import { totalCalories } from "@/Model/meals";
                         <p>
                             <strong>Calories consumed:</strong>
                             <br>
-                            {{ totalCalories }}
+                            <h>Today's Calories: {{ todaysCalories }}</h>
+                            <br>
+                            <h>This Week's Calories: {{ weekCalories }}</h>
+                            <br>
+                            <h>This Month's Calories: {{ monthCalories }}</h>
+                            <br>
+                            <h>All Time Calories: {{ totalCalories }}</h>
+                            <br>
+                            
+
                         </p>
                     </div>
                 </div>
