@@ -17,8 +17,9 @@ function logout2() {
                 Welcome, {{ session.user.name }}
                 (<a @click="logout2()">logout</a>)
             </div>
-            <div class="navbar-item" v-else>
-                <a class="button is-primary is-dropdown" id="dropbtn">
+            <div class="dropdown is-hoverable" v-else>
+              <div class="dropdown-trigger">
+                <button class="button is-primary" id="dropbtn" aria-haspopup="true" aria-controls="dropdown-menu">
                     <span class="icon">
                         <i class="fas fa-user"></i>
                     </span>
@@ -26,13 +27,14 @@ function logout2() {
                     <span class="icon is-small">
                         <i class="fas fa-angle-down"></i>
                     </span>
-                
-                    <div class="dropdown-content" id="users">
+                </button>
+              </div>
+                    <div class="dropdown-menu" id="users" role="menu">
                         <a v-for="user in users" class="dropdown-item" @click="login2(user.name)">
                             {{ user.name }}
                         </a>
                     </div>
-                  </a>
+              </div>
                 
                 
 <div class="button is-primary" onclick="document.getElementById('SignupForm').style.display='block'" style="width:auto;"><strong>Sign Up</strong></div>
@@ -93,7 +95,7 @@ function logout2() {
 </div>
                 
             
-            </div>
+    
 
 
 
@@ -107,21 +109,7 @@ function logout2() {
 .button {
     color: white;
 }
-.dropdown-content
-{
-    display:none;
-}
 
-#dropbtn
-{
-    display:inline-block;
-    position:relative;
-}
-#dropbtn:hover .dropdown-content
-{
-    display:flex;
-    flex-direction: column;
-}
 
 .modal {
     display:none;
@@ -155,8 +143,6 @@ h1 {
 }
 
 #users{
-    
-    position: relative;
     background-color: #f1f1f1;
     min-width: 80px;
     overflow: auto;
