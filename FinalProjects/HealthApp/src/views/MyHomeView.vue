@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import NewMeal from "@/components/NewMeal.vue";
 import NewWorkout from "@/components/NewWorkout.vue";
-import Posts from "@/components/Posts.vue";
+import MyPosts from "@/components/MyPosts.vue";
 import { todaysActiveTime, totalActiveTime, weekActiveTime, monthActiveTime } from "@/Model/workouts";
 import { totalCalories, todaysCalories, weekCalories, monthCalories } from "@/Model/meals";
 
@@ -39,7 +39,7 @@ import { totalCalories, todaysCalories, weekCalories, monthCalories } from "@/Mo
         <div class="column is-half" id="mystuff">
             <h1 class="title">My Stuff</h1>
             <p class="subtitle">This is the stuff part</p>
-            <Posts />
+            <MyPosts />
         </div>
         <div class="column is-one-quarter" id="activity">
             <h1 class="title">Activity</h1>
