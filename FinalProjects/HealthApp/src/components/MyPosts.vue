@@ -67,7 +67,14 @@ return allPosts;
 
 <style scoped>
 
-
+.columns {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
 
 
 </style>
