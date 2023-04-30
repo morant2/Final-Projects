@@ -6,12 +6,13 @@
     "paths": {
       "@/*": ["./src/*"]
     },
+    "lib": ["es2020", "dom"],
     "ignoreDeprecations":"5.0",
   },
 
   "references": [
     {
-      "path": "./tsconfig.node.json"
+      "path": "./tsconfig.config.json"
     }
   ]
 }
