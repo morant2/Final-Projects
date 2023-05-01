@@ -14,7 +14,6 @@ app
   .get('/', (req, res) => {
     res.send('Hello World! from Express')
   })
-  .use()
 
 app.listen(port, () => {
   console.log(`Server running at http://${hostname}:${port}/`);

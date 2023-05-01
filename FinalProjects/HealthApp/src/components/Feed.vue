@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { useSession } from '@/Model/session';
-import { getMealsbyUser } from '@/Model/meals';
-import { getWorkoutsbyUser } from '@/Model/workouts';
+import { getMeals, type Meal } from '@/Model/meals';
+import { getWorkouts, type Workout } from '@/Model/workouts';
+import { getUsers, getUser } from '@/Model/session';
 import { computed, ref } from 'vue';
 
-const mealsList = getMealsbyUser();
-const workoutsList = getWorkoutsbyUser();
+const mealsList = getMeals();
+const workoutsList = getWorkouts();
+const usersList = getUsers();
 
 
 const activeTab = ref('all')
@@ -46,9 +48,10 @@ return allPosts;
         <li v-for="(post, index) in postsToShow" :key="index">
             <div class="columns">
                 <div class="column is-one-quarter">
-                    <!--<img :src="post.image" alt="post image" />-->
+                    <img :src="getUser(post.user)?.photo" alt="post image" />
                 </div>
                 <div class="column is-three-quarters">
+                    <h1>{{ post.user }}</h1>
                     <h1>{{ post.type }}</h1>
                     <p>{{ post.description }}</p>
                     <p>{{ post.date }}</p>
@@ -65,14 +68,42 @@ return allPosts;
 
 <style scoped>
 
-.columns {
+article{
+    margin: 0 auto;
+    padding: 0;
+    overflow: auto;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.panel-heading {
+    text-align: center;
+    width:100%;
+}
+
+.panel{
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.columns {
+    display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     align-content: center;
 }
-
 
 </style>

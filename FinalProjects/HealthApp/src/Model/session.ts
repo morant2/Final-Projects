@@ -46,3 +46,7 @@ export function getNames() {
 export function getUsers() {
     return users;   
 }
+
+export function getUser(name : string) {
+    return users.find(user => user.name === name)
+}
