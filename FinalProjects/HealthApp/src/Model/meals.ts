@@ -1,4 +1,5 @@
 import data from "../data/meals.json";
+import { api } from "./myFetch";
 import { useSession } from "./session";
 import { computed, reactive } from "vue";
 

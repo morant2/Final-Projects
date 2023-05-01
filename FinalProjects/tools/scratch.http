@@ -1,0 +1,24 @@
+###
+GET http://localhost:3000/
+
+
+###
+GET http://localhost:3000/api/
+###
+GET http://localhost:3000/api/v1/meals
+
+###
+GET http://localhost:3000/meals/1
+
+###
+POST http://localhost:3000/api/v1/meals/1/
+Content-Type: application/json
+some-other-header: with my very personal information
+
+{
+    "name": "Pizza",
+    "calories": 400
+}
+
+###
+DELETE http://localhost:3000/api/v1/meals/1
