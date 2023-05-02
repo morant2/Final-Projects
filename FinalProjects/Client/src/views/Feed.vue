@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import Feed from '@/components/Feed.vue';
+
+import Feed from "@/components/Feed.vue";
 
 </script>
 
 <template>
 
   <h1 class="title is-1">All Posts</h1>
-
 
         <div class="column is-one-quarter">
         

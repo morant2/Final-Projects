@@ -1,31 +1,62 @@
 const data = require('../data/meals.json');
+const { connect, ObjectId } = require('./mongo');
 
-function getMeals() {
-    return data.meals;
+const COLLECTION_NAME = 'meals';
+
+async function collection() {
+    const db = await connect();
+    return db.collection(COLLECTION_NAME);
 }
 
-function getMealbyId(id) {
-    return data.meals.find(meal => meal.id == id);
+async function getMeals() {
+    const col = await collection();
+    const items = await col.find().toArray();
+    return items;
 }
 
-function getMealsbyUser(name) {
-    return data.meals.filter(meal => meal.user == name);
+async function getMealbyId(id) {
+    const col = await collection();
+
+    const item = await col.findOne({ _id: ObjectId(id) });
+    return item;
 }
 
-function addMeal(meal) {
-    meal.id= data.meals.length + 1;
-    meal.user= user.name;
-    data.meals.push(meal);
+async function getMealsbyUser(name) {
+    const col = await collection();
+
+    const items = await col.find({ user: name }).toArray();
+    return items;
 }
 
-function updateMeal(meal) {
-    const index = data.meals.findIndex(m => m.id == meal.id);
-    data.meals[index] = meal;
+async function addMeal(meal) {
+    const col = await collection();
+    const result = await col.insertOne(meal);
+
+    meal._id = result.insertedId;
+    return meal;
 }
 
-function deleteMeal(id) {
-    const index = data.meals.findIndex(m => m.id == id);
-    data.meals.splice(index, 1);
+async function updateMeal(meal) {
+    const col = await collection();
+    const result = await col.findOneAndUpdate(
+        {_id: new ObjectId(meal._id)},
+        {$set: meal},
+        { returnDocument: 'after'}
+    );
+    return result.value;
+}
+
+async function deleteMeal(id) {
+    const col = await collection();
+    const result = await col.deleteOne({ _id: ObjectId(id) });
+    return result.deletedCount;
+}
+
+async function seed() {
+    const col = await collection();
+    const result = await col.insertMany(data.meals);
+
+    return result.insertedCount;
 }
 
 module.exports = {
@@ -35,4 +66,5 @@ module.exports = {
     updateMeal,
     deleteMeal,
     getMealsbyUser,
+    seed
 }

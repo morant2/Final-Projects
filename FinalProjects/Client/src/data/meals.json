@@ -2,6 +2,7 @@
 {
     "meals":[
         {
+            "id": 1,
             "user": "John Doe",
             "date": "2023-04-11T00:00:00.000Z",
             "type": "snack",
@@ -9,6 +10,7 @@
             "calories": 150
         },
         {
+            "id": 2,
             "user":"John Doe",
             "date": "2023-03-01T00:00:00.000Z",
             "type":"dinner",
@@ -16,6 +18,7 @@
             "calories": 500
         },
         {
+            "id": 3,
             "user": "Jane Doe",
             "date": "2023-01-01T00:00:00.000Z",
             "type": "snack",
@@ -23,6 +26,7 @@
             "calories": 200
         },
         {
+            "id": 4,
             "user": "John Smith",
             "date": "2023-03-21T00:00:00.000Z",
             "type": "lunch",
@@ -30,6 +34,7 @@
             "calories": 700
         },
         {
+            "id": 5,
             "user": "John Doe",
             "date": "2023-04-09T00:00:00.000Z",
             "type": "snack",
@@ -37,6 +42,7 @@
             "calories": 200
         },
         {
+            "id": 6,
             "user": "John Doe",
             "date": "2023-03-19T00:00:00.000Z",
             "type": "snack",

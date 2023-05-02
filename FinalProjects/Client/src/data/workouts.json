@@ -1,6 +1,7 @@
 {
     "workouts":[
         {
+            "id": 1, 
             "user": "John Doe",
             "type": "cardio",
             "description": "Running",
@@ -9,6 +10,7 @@
         },
 
         {
+            "id": 2,
             "user": "John Doe",
             "type": "strength",
             "description": "Bench Press",
@@ -17,6 +19,7 @@
         },
 
         {
+            "id": 3,
             "user": "John Smith",
             "type": "flexibility",
             "description": "Yoga",
@@ -24,6 +27,7 @@
             "activeTime": 60
         },
         {
+            "id": 4,
             "user": "John Doe",
             "type":"flexibility",
             "description": "Yoga",

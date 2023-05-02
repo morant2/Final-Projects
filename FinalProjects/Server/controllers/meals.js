@@ -4,14 +4,25 @@ const router = express.Router();
 
 router
     .get('/', (req, res) => {
+        model.getMeals()
+            .then(list => {
+
+                const data = { data: list, total: list.length, isSuccess: true};
+                res.send(data)
+            })
+            .catch(next);
+        /*
         const list = model.getMeals();
-        res.send(list)
+        const data = { data: list, total: list.length, isSuccess: true};
+        res.send(data)
+        */
     })
 
     .get('/:id', (req, res) => {
         const id = req.params.id;
         const meal = model.getMealbyId(id);
-        res.send(meal)
+        const data = { data: meal, isSuccess: true};
+        res.send(data)
     })
 
     .post('/', (req, res) => {
@@ -23,19 +34,22 @@ router
         console.log( req.headers );
 
         model.addMeal(meal);
-        res.send('Meal added'+ meal)
+        const data = { data: meal, isSuccess: true};
+        res.send('Meal added'+ data)
     })
 
     .patch('/:id', (req, res) => {
         const meal = req.body;
         model.updateProduct(meal);
-        res.send('Meal updated'+ meal);
+        const data = { data: meal, isSuccess: true};
+        res.send('Meal updated'+ data)
     })
 
     .delete('/:id', (req, res) => {
         const id = req.params.id;
         model.deleteMeal(id);
-        res.send({id});
+        const data = { data: id, isSuccess: true};
+        res.send(data)
     })
 
 module.exports = router;
