@@ -8,47 +8,47 @@ async function collection() {
     return db.collection(COLLECTION_NAME);
 }
 
-async function getMeals() {
+async function getAll() {
     const col = await collection();
     const items = await col.find().toArray();
     return items;
 }
 
-async function getMealbyId(id) {
+async function getById(id) {
     const col = await collection();
 
     const item = await col.findOne({ _id: ObjectId(id) });
     return item;
 }
 
-async function getMealsbyUser(name) {
+async function getByUser(name) {
     const col = await collection();
 
     const items = await col.find({ user: name }).toArray();
     return items;
 }
 
-async function addMeal(meal) {
+async function add(item) {
     const col = await collection();
-    const result = await col.insertOne(meal);
+    const result = await col.insertOne(item);
 
-    meal._id = result.insertedId;
-    return meal;
+    item._id = result.insertedId;
+    return item;
 }
 
-async function updateMeal(meal) {
+async function update(item) {
     const col = await collection();
     const result = await col.findOneAndUpdate(
-        {_id: new ObjectId(meal._id)},
-        {$set: meal},
+        {_id: new ObjectId(item._id)},
+        {$set: item},
         { returnDocument: 'after'}
     );
     return result.value;
 }
 
-async function deleteMeal(id) {
+async function deleteItem(id) {
     const col = await collection();
-    const result = await col.deleteOne({ _id: ObjectId(id) });
+    const result = await col.deleteOne({ _id: new ObjectId(id) });
     return result.deletedCount;
 }
 
@@ -59,12 +59,57 @@ async function seed() {
     return result.insertedCount;
 }
 
-module.exports = {
-    getMeals,
-    getMealbyId,
-    addMeal,
-    updateMeal,
-    deleteMeal,
-    getMealsbyUser,
-    seed
+
+const totalCaloriesByUser = (meals, user) => {
+    let total = 0;
+    meals.forEach(meal => {
+        if (meal.user === user) {
+            total += meal.calories;
+        }
+    });
+    return total;
 }
+
+const todayCaloriesByUser = (meals, user) => {
+    let total = 0;
+    meals.forEach(meal => {
+        if (meal.user === user && meal.date === new Date().toISOString().slice(0, 10)) {
+            total += meal.calories;
+        }
+    });
+    return total;
+}
+
+const weekCaloriesByUser = (meals, user) => {
+    let total = 0;
+    meals.forEach(meal => {
+        if (meal.user === user && meal.date >= new Date(new Date().getTime() - (7 * 24 * 60 * 60 * 1000)).toISOString().slice(0, 10)) {
+            total += meal.calories;
+        }
+    });
+    return total;
+}
+
+const monthCaloriesByUser = (meals, user) => {
+    let total = 0;
+    meals.forEach(meal => {
+        if (meal.user === user && meal.date >= new Date(new Date().getTime() - (30 * 24 * 60 * 60 * 1000)).toISOString().slice(0, 10)) {
+            total += meal.calories;
+        }
+    });
+    return total;
+}
+
+module.exports = {
+    getAll,
+    getById,
+    add,
+    update,
+    deleteItem,
+    getByUser,
+    seed,
+    totalCaloriesByUser,
+    todayCaloriesByUser,
+    weekCaloriesByUser,
+    monthCaloriesByUser
+};

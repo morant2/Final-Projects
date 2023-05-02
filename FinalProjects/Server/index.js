@@ -1,7 +1,9 @@
-require('dotenv').config();
-const express = require('express');
+require('dotenv').config()
+const express = require('express')
 const path = require('path');
 const meals = require('./controllers/meals');
+const workouts = require('./controllers/workouts');
+const users = require('./controllers/users');
 const app = express();
 
 const hostname = '127.0.0.1';
@@ -25,11 +27,14 @@ app
     res.send('Hello World! from Express')
   })
   .use('/api/v1/meals', meals)
+  .use('/api/v1/workouts', workouts)
+  .use('/api/v1/users', users)
+
 
 
 //Catch All
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../healthapp/dist/index.html'));
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 })
 
 

@@ -1,17 +1,20 @@
-###
-GET http://localhost:3000/
+@port=3070
 
 
 ###
-GET http://localhost:3000/api/
-###
-GET http://localhost:3000/api/v1/meals
+GET http://localhost:{{port}}/
+
 
 ###
-GET http://localhost:3000/meals/1
+GET http://localhost:{{port}}/api/
+###
+GET http://localhost:{{port}}/api/v1/meals
 
 ###
-POST http://localhost:3000/api/v1/meals/1/
+GET http://localhost:{{port}}/meals/1
+
+###
+POST http://localhost:{{port}}/api/v1/meals/
 Content-Type: application/json
 some-other-header: with my very personal information
 
@@ -21,4 +24,17 @@ some-other-header: with my very personal information
 }
 
 ###
-DELETE http://localhost:3000/api/v1/meals/1
+DELETE http://localhost:{{port}}/api/v1/meals/1
+
+
+###
+POST http://localhost:{{port}}/api/v1/meals/seed
+
+###
+POST http://localhost:{{port}}/api/v1/workouts/seed
+
+###
+POST http://localhost:{{port}}/api/v1/users/seed
+
+###
+DELETE http://localhost:{{port}}/api/v1/meals/64514cf95780cb768acac2fa

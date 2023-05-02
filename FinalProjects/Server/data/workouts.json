@@ -1,0 +1,39 @@
+{
+    "workouts":[
+        {
+            "id": 1, 
+            "user": "John Doe",
+            "type": "cardio",
+            "description": "Running",
+            "date": "2023-01-01",
+            "activeTime": 30
+        },
+
+        {
+            "id": 2,
+            "user": "John Doe",
+            "type": "strength",
+            "description": "Bench Press",
+            "date": "2023-03-01",
+            "activeTime": 45
+        },
+
+        {
+            "id": 3,
+            "user": "John Smith",
+            "type": "flexibility",
+            "description": "Yoga",
+            "date": "2023-03-21",
+            "activeTime": 60
+        },
+        {
+            "id": 4,
+            "user": "John Doe",
+            "type":"flexibility",
+            "description": "Yoga",
+            "date": "2023-03-14",
+            "startTime": "11:00",
+            "activeTime": 75
+        }
+    ]
+}

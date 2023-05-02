@@ -1,8 +1,6 @@
 const express = require('express');
-const model = require('../models/meals');
+const model = require('../models/workouts');
 const router = express.Router();
-
-
 
 router
     .get('/', (req, res, next) => {
@@ -14,17 +12,6 @@ router
             })
             .catch(next);
     })
-//get meals by user
-    .get('/user/:name', (req, res, next) => {
-        model.getByUser(req.params.name)
-            .then(list => {
-
-                const data = { data: list, total: list.length, isSuccess: true};
-                res.send(data)
-            })
-            .catch(next);
-    })
-    
 
     .get('/:id', (req, res, next) => {
         model.getById(req.params.id)

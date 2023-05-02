@@ -21,7 +21,7 @@ export function getMeals(): Promise<DataListEnvelope<Meal>> {
 
 }
 
-export function getMealsbyUser(): Promise<DataEnvelope<Meal>> {
+export function getMealsbyUser(): Promise<DataListEnvelope<Meal>> {
     return api('meals/' + session.user?.name);
 }
 
@@ -32,6 +32,22 @@ export function getMeal(id: string): Promise<DataEnvelope<Meal>> {
 export function addMeal(meal: Meal): Promise<DataEnvelope<Meal>> {
     return api('meals', meal)
 }
+
+export const totalCalories = computed(() => {
+
+});
+
+export const todaysCalories = computed(() => {
+
+});
+
+export const weekCalories = computed(() => {
+
+});
+
+export const monthCalories = computed(() => {
+
+});
 
 /*
 export const totalCalories = computed(() => {

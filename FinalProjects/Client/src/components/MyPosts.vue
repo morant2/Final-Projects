@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { useSession } from '@/Model/session';
-import { getMealsbyUser } from '@/Model/meals';
-import { getWorkoutsbyUser } from '@/Model/workouts';
+import { getMeals, type Meal } from '@/Model/meals';
+import { getWorkouts, type Workout } from '@/Model/workouts';
 import { computed, ref } from 'vue';
 
-const mealsList = getMealsbyUser();
-const workoutsList = getWorkoutsbyUser();
+const mealsList = ref<Meal[]>([]);
+getMeals().then((data) => {
+    mealsList.value = data.data;
+});
+const workoutsList = ref<Workout[]>([]);
+getWorkouts().then((data) => {
+    workoutsList.value = data.data;
+});
 
 
 const activeTab = ref('all')
@@ -13,13 +19,16 @@ function changeTab(tabName: string) {
     activeTab.value = tabName
 }
 //sort postsToShow by date
+
 const postsToShow = computed(() => {
-    let allPosts = [...mealsList, ...workoutsList];
+    let allPosts = [...mealsList.value, ...workoutsList.value];
 
 if(activeTab.value === 'meals') {
-    allPosts = mealsList
+    allPosts = mealsList.value;
 } else if (activeTab.value === 'workouts') {
-    allPosts = workoutsList
+    allPosts = workoutsList.value;
+} else if (activeTab.value === 'all') {
+    allPosts = [...mealsList.value, ...workoutsList.value];
 }
 
 allPosts.sort((a, b) => {
