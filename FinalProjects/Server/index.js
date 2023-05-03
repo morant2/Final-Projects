@@ -4,7 +4,7 @@ const path = require('path');
 const meals = require('./controllers/meals');
 const workouts = require('./controllers/workouts');
 const users = require('./controllers/users');
-const { requireLogin } = require('./middleware/authorization')
+//const { requireLogin } = require('./middleware/authorization')
 const app = express();
 
 const hostname = '127.0.0.1';
