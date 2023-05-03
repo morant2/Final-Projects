@@ -1,70 +1,139 @@
-const data = require('../data/usersList.json');
+//const data = require('../data/products.json');
+const jwt = require('jsonwebtoken');
 const { connect, ObjectId } = require('./mongo');
 
+
 const COLLECTION_NAME = 'users';
+
+
+
+
 
 async function collection() {
     const db = await connect();
     return db.collection(COLLECTION_NAME);
 }
 
-async function getUsers() {
+async function getAll(page = 1, pageSize = 30) {
     const col = await collection();
-    const items = await col.find().toArray();
-    return items;
+    const items = await col.find().skip((page-1) * pageSize).limit(pageSize).toArray();
+    const total = await col.countDocuments();
+    return { items, total };
 }
 
-async function getUserbyId(id) {
+async function getById(id) {
     const col = await collection();
-
-    const item = await col.findOne({ _id: ObjectId(id) });
+    const item = await col.findOne({ _id: new ObjectId(id) });
     return item;
 }
 
-async function getUserbyName(name) {
+async function add(item) {
     const col = await collection();
 
-    const item = await col.findOne({ name: name });
+    const result = await col.insertOne(item);
+
+    item._id = result.insertedId;
     return item;
 }
 
-async function addUser(user) {
-    const col = await collection();
-    const result = await col.insertOne(user);
+async function update(item) {
 
-    user._id = result.insertedId;
-    return user;
-}
-
-async function updateUser(user) {
+    console.log(item);
     const col = await collection();
     const result = await col.findOneAndUpdate(
-        {_id: new ObjectId(user._id)},
-        {$set: user},
-        { returnDocument: 'after'}
+        { _id: new ObjectId(item.id) },
+        { $set: item },
+        { returnDocument: 'after' }
     );
+
     return result.value;
 }
 
-async function deleteUser(id) {
+async function deleteItem(id) {
     const col = await collection();
-    const result = await col.deleteOne({ _id: ObjectId(id) });
+    const result = await col.deleteOne({ _id: new ObjectId(id) });
     return result.deletedCount;
+}
+
+async function search(searchTerm, page = 1, pageSize = 30) {
+    const col = await collection();
+    const query = {
+        $or: [
+            { name: { $regex: searchTerm, $options: 'i' } },
+            { email: { $regex: searchTerm, $options: 'i' } },
+        ]
+    };
+
+    const items = await col.find(query).skip((page - 1) * pageSize).limit(pageSize).toArray();
+    const total = await col.countDocuments(query);
+    return { items, total };
 }
 
 async function seed() {
     const col = await collection();
-    const result = await col.insertMany(data.users);
-
+    const result = await col.insertMany(data);
     return result.insertedCount;
 }
 
+async function login(email, password) {
+    const col = await collection();
+    const user = await col.findOne({ email });
+    if (!user) {
+        throw new Error('User not found');
+    }
+    if (user.password !== password) {
+        throw new Error('Invalid password');
+    }
+
+    const cleanUser = { ...user, password: undefined };
+    const token = await generateTokenAsync(cleanUser, process.env.JWT_SECRET, '1d');
+
+    return { user: cleanUser, token };
+}
+
+async function oAuthLogin(provider, accessToken) {
+    // validate the access token
+    // if valid, return the user
+    // if not, create a new user
+    // return the user
+}
+
+function generateTokenAsync(user, secret, expiresIn) {
+    return new Promise( (resolve, reject) => {
+        jwt.sign(user, secret, { expiresIn }, (err, token) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(token);
+            }
+        });
+    });
+}
+
+function verifyTokenAsync(token, secret) {
+    return new Promise( (resolve, reject) => {
+        jwt.verify(token, secret, (err, user) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(user);
+            }
+        });
+    });
+}
+
+
+
 module.exports = {
+    getAll,
+    getById,
+    add,
+    update,
+    deleteItem,
+    search,
     seed,
-    getUsers,
-    getUserbyId,
-    getUserbyName,
-    addUser,
-    updateUser,
-    deleteUser
+    login,
+    oAuthLogin,
+    generateTokenAsync,
+    verifyTokenAsync,
 };

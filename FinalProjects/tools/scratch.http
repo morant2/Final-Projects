@@ -11,7 +11,7 @@ GET http://localhost:{{port}}/api/
 GET http://localhost:{{port}}/api/v1/meals
 
 ###
-GET http://localhost:{{port}}/meals/1
+GET http://localhost:{{port}}/api/v1/workouts
 
 ###
 POST http://localhost:{{port}}/api/v1/meals/
@@ -38,3 +38,6 @@ POST http://localhost:{{port}}/api/v1/users/seed
 
 ###
 DELETE http://localhost:{{port}}/api/v1/meals/64514cf95780cb768acac2fa
+
+###
+GET http://localhost:{{port}}/api/v1/users

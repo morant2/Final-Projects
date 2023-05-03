@@ -1,13 +1,16 @@
 <script setup lang="ts">
 
-import { getNames } from "../Model/session";
-import { getUsers } from "../Model/session";
+import { getAllUsers } from '@/Model/session';
+import type { User } from '@/Model/session';
+import { ref } from 'vue';
 
- const names= getNames();
-const users= getUsers();
+const users = ref<User[]>([]);
+getAllUsers().then((data) => {
+    users.value = data.data;
+});
+
 </script>
 
-// Path: src\views\UsersView.vue
 <template>
     <div class="column is-one-quarter"></div>
     <div class="column is-half">
@@ -17,17 +20,15 @@ const users= getUsers();
                     <th>Users:</th>
                     <th>UserID:</th>
                     <th>Email:</th>
-                    <th>Admin:</th>
+                    <th>Role:</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="user in users">
-                    <td>{{ user.name }}</td>
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.email }}</td>
-                
-                    <td v-if="user.name==='John Doe'">Yes</td>
-                    <td v-else>No</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.id}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.role}}</td>
                 </tr>
             </tbody>
         </table>

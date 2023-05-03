@@ -2,12 +2,26 @@
 import { useSession } from '@/Model/session';
 import { getMeals, type Meal } from '@/Model/meals';
 import { getWorkouts, type Workout } from '@/Model/workouts';
-import { getUsers, getUser } from '@/Model/session';
+import { getAllUsers, getUser } from '@/Model/session';
 import { computed, ref } from 'vue';
 
-const mealsList = getMeals();
-const workoutsList = getWorkouts();
-const usersList = getUsers();
+const { user } = useSession();
+
+
+const meals = ref<Meal[]>([]);
+const workouts = ref<Workout[]>([]);
+//combine both lists
+const allPosts = ref<any[]>([]);
+getMeals().then((data) => {
+    meals.value = data.data;
+    allPosts.value = [...meals.value, ...workouts.value];
+});
+
+getWorkouts().then((data) => {
+    workouts.value = data.data;
+    allPosts.value = [...meals.value, ...workouts.value];
+});
+
 
 
 const activeTab = ref('all')
@@ -16,18 +30,12 @@ function changeTab(tabName: string) {
 }
 //sort postsToShow by date
 const postsToShow = computed(() => {
-    let allPosts = [...mealsList, ...workoutsList];
+    let allPosts = [...meals.value, ...workouts.value];
+    allPosts.sort((a, b) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
 
-if(activeTab.value === 'meals') {
-    allPosts = mealsList
-} else if (activeTab.value === 'workouts') {
-    allPosts = workoutsList
-}
-
-allPosts.sort((a, b) => {
-    return new Date(b.date).getTime() - new Date(a.date).getTime()
-})
-
+    
 return allPosts;
 });
 
@@ -48,7 +56,7 @@ return allPosts;
         <li v-for="(post, index) in postsToShow" :key="index">
             <div class="columns">
                 <div class="column is-one-quarter">
-                    <img :src="getUser(post.user)?.photo" alt="post image" />
+                    <img :src="user?.photo" alt="post image" />
                 </div>
                 <div class="column is-three-quarters">
                     <h1>{{ post.user }}</h1>

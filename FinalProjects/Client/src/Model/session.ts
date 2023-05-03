@@ -1,7 +1,8 @@
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-import { users } from "../data/usersList.json";
 import * as myFetch from "./myFetch";
+import type { DataEnvelope, DataListEnvelope } from "./myFetch";
+import type { ObjectId } from "mongodb";
 
 
 
@@ -12,27 +13,24 @@ const session = reactive({
         msg: string,
         type: "success" | "error" | "info" | "warning",
     }[],
+    redirectUrl: null as string | null,
 })
 
 export interface User {
    
-    id: number;
+    id: ObjectId;
     name: string;
     email: string;
+    password: string;
     photo: string;
-
+    token?: string;
+    role: string;
 }
 
 export function useSession() {
     return session;
 }
 
-export function login2(name:string){
-    const user = users.find(user => user.name === name)
-    if(user){
-        session.user = user
-    }
-}
 
 export function useLogout() {
     const router = useRouter();
@@ -45,16 +43,20 @@ export function useLogout() {
     }
 }
 
-export function getNames() {
-    return users.map(user => user.name)
+export function getAllUsers(): Promise<DataListEnvelope<User>> {
+    return api('users')
 }
 
-export function getUsers() {
-    return users;   
+export function getAllNames(): Promise<DataListEnvelope<User>> {
+    return api('users/names')
 }
 
-export function getUser(name : string) {
-    return users.find(user => user.name === name)
+export function getUser(id : number): Promise<DataEnvelope<User>> {
+    return api('users/' + id)
+}
+
+export function addUser(user: User): Promise<DataEnvelope<User>> {
+    return api('users', user)
 }
 
 export function api(url: string, data?: any, method?: string, headers?: any) {
@@ -71,4 +73,15 @@ export function api(url: string, data?: any, method?: string, headers?: any) {
         .finally(() => {
             session.isLoading = false;
         })
+}
+
+export function useLogin() {
+    const router = useRouter();
+
+    return function (user: User) {
+        session.user = user;
+
+        router.push(session.redirectUrl ?? "/");
+        session.redirectUrl = null;
+    }
 }

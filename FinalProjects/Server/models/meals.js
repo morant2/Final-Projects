@@ -1,4 +1,4 @@
-const data = require('../data/meals.json');
+//const data = require('../data/meals.json');
 const { connect, ObjectId } = require('./mongo');
 
 const COLLECTION_NAME = 'meals';
@@ -17,7 +17,7 @@ async function getAll() {
 async function getById(id) {
     const col = await collection();
 
-    const item = await col.findOne({ _id: ObjectId(id) });
+    const item = await col.findOne({ _id: new ObjectId(id) });
     return item;
 }
 

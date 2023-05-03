@@ -1,23 +1,27 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { type User, getUsers } from '@/Model/session';
+import { ObjectId } from 'mongodb';
+import type { User } from '../Model/session';
+import { addUser } from '../Model/session';
 
 const user = ref<User | null>(null);
 
 function newUser(){
     user.value={
-    id: getUsers().length + 1,
+    id: new ObjectId(),
     name: "",
     email: "",
-    photo: ""
+    password: "",
+    photo: "",
+    role: "user"
     }
 }
 
+
+
 function saveUser(){
-    if(user.value){
-        getUsers().push(user.value);
-        user.value = null;
-    }
+
+    //addUser(user.value!);
 }
 
 
@@ -64,12 +68,7 @@ function saveUser(){
                         </div>
                     </div>
 
-                    <div class="field">
-                        <label class="label">Message</label>
-                        <div class="control">
-                            <textarea class="textarea" placeholder="Textarea"></textarea>
-                        </div>
-                    </div>
+
 
                     <div class="field">
                         <div class="control">

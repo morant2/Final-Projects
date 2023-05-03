@@ -1,5 +1,5 @@
 const { connect, ObjectId } = require('./mongo');
-const data = require('../data/workouts.json');
+//const data = require('../data/workouts.json');
 
 const COLLECTION_NAME = 'workouts';
 

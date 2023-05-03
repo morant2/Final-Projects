@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import { useSession } from '@/Model/session';
-import { getMeals, type Meal } from '@/Model/meals';
+import { getMeals, getMealsbyUser, type Meal } from '@/Model/meals';
 import { getWorkouts, type Workout } from '@/Model/workouts';
 import { computed, ref } from 'vue';
 
+const { user } = useSession();
+
 const mealsList = ref<Meal[]>([]);
-getMeals().then((data) => {
+getMealsbyUser().then((data) => {
     mealsList.value = data.data;
 });
+
 const workoutsList = ref<Workout[]>([]);
 getWorkouts().then((data) => {
     workoutsList.value = data.data;

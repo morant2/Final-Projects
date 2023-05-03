@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useSession, login2, useLogout } from '@/Model/session';
-import { users } from '@/data/usersList.json';
+import { useSession, useLogout, useLogin, getAllUsers } from '@/Model/session';
 import SignUp from '@/components/SignUp.vue';
+import type { User } from '@/Model/session';
+
+const userList = ref<User[]>([]);
+getAllUsers().then((data) => {
+    userList.value = data.data;
+});
 
 const session = useSession();
 const logout = useLogout();
@@ -31,13 +36,15 @@ function logout2() {
                   </button>
                 </div>
                   <div class="dropdown-menu" id="users" role="menu">
-                    <a v-for="user in users" class="dropdown-item" @click="login2(user.name)">
-                      {{ user.name }}
-                    </a>
+                    <div class="dropdown-content">
+                        <a v-for="(user, index) in userList" :key="index" class="dropdown-item" @click="useLogin()">
+                            {{ user.name }}
+                        </a>
+                    </div>
                   </div>
               </div>
               <div class="navbar-item">
-                <SignUp></SignUp>
+                <SignUp />
             </div>
             </div>
                 
